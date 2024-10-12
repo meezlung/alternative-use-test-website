@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorize the Sequence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .sequence {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 50%;
+            background-color: #ffffff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px auto 0 auto;
+        }
+        .progress {
+            height: 30px;
+            background-color: #F2DE00;
+            width: 0;
+            transition: width 30s linear;
+        }
+        .whole_content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="whole_content">
+        <h1>Memorize the Sequence</h1>
+        <div class="sequence">3 1 4 1 5 9</div>
+        
+        <div class="progress-bar"></div>
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        function startTimer() {
+            const progress = document.getElementById('progress');
+            progress.style.width = '100%';
+            setTimeout(() => {
+                window.location.href = 'page3_main_test.html';
+            }, 30000);
+        }
+
+        window.onload = startTimer;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+html {
+    margin: 0;
+    padding: 0 20px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin:    0 auto;
+    max-width: 600px;
+    }
+
+body {
+     width: 100%; 
+     text-align: center; 
+    }
+
+.progress {
+    height: 300px;
+    }
+
+.progress > svg {
+    height: 100%;
+    display: block;
+    }
+
+.circleholder {
+    position: relative;
+    width:300px;
+    height:300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    }
+
+.innercircle {
+    position: absolute;
+    display: block;
+    width:150px;
+    height: 150px;
+    left: 50px;
+    top: 50px;
+    }
+
+#pagetwo {
+    height:100%;
+    overflow: visible;
+    }
+    
+#result {
+    font-weight: 100;
+    color: #000000;
+    font-style: italic;
+}
+    
+.css-input { 
+    position: relative;
+    padding-left: 10px;
+    width: 75%;
+    color: #000;
+/* 				left: 12.5%; */ 
+    font-family: 'Raleway', sans-serif;
+    border-color:#cccccc; 
+    border-style:solid; 
+    font-size:30px; 
+    padding:9px; 
+    border-radius:32px; 
+    border-width:2px; 
+    text-shadow:0px 0px 0px rgba(42,42,42,.75);  
+    } 
+    
+.css-input:focus { 
+    outline:none; 
+    } 
+    
+.inputholder {
+    width: 100%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.centerresult {
+    width: 100%;
+    text-align: center;
+}
+
+.smalltext {
+    font-size: 10px;
+    color: #888;
+}
+
+#instructions {
+/*
+    width: 75%;
+    margin-left: 12.5%;
+*/
+    font-size: 0.8em;
+/* 				margin-top: 50px; */
+}
+
+.home-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    backface-visibility: hidden;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    background: #ffffff;
+    border-radius: 100px;
+    border: 3px solid #F2DE00;
+    padding: 5px 10px 5px 10px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.home-button:hover {
+    background: #F2DE00;
+    color: #333;
+    text-decoration: none;
+}
+
+.restart-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    backface-visibility: hidden;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    background: #ffffff;
+    border-radius: 100px;
+    border: 3px solid #F2DE00;
+    padding: 5px 10px 5px 10px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.restart-button:hover {
+    background: #F2DE00;
+    color: #333;
+    text-decoration: none;
+}
+
+.judgediv {
+    width:65%;
+    margin-left: 12.5%;
+    margin-top: 50px;
+    background-color: #F2DE00;
+    border-radius: 30px;
+    padding: 20px 5%;
+}
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.two_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+#imagecredit {
+    font-size: 10px;
+    color: black;
+    opacity: 0.6;
+/*
+    position:relative;
+    bottom: 10px;	
+*/
+}
+
+.button {
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    border-radius: 21px;
+    color: #FFFFFF;
+    font-family: 'Raleway', sans-serif;
+    font-size: 33px;
+    font-weight: 200;
+    padding: 19px;
+    background-color: #F6B036;
+    box-shadow: 0px 5px 20px 0px #000000;
+    -webkit-box-shadow: 0px 5px 20px 0px #000000;
+    -moz-box-shadow: 0px 5px 20px 0px #000000;
+    border: solid #337FED 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #D03838;
+    text-decoration: none;
+}
