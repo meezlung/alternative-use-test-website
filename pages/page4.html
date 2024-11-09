@@ -107,7 +107,7 @@
             const progress = document.getElementById('progress');
             progress.style.width = '100%';
             setTimeout(() => {
-                window.location.href = 'page3_main_test.html';
+                window.location.href = 'page5.html';
             }, 30000);
         }
 
@@ -119,69 +119,3 @@
 </body>
 
 </html>
-<!-- <div class="whole_content">
-    <h1>Type the Sequence You Memorized</h1>
-    <input type="text" id="sequenceInput" class="css-input" placeholder="Type the sequence...">
-    <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-    </div>
-</div>
-
-<script>
-    // Get answers from localStorage
-    var answersByObject = JSON.parse(localStorage.getItem("answersByObject")) || {};
-
-    // Function to download answers.txt
-    function downloadAnswers() {
-        // Prepare answers for download
-        var postdata = {
-            "sessionid": makeid(),
-            "answers": answersByObject
-        };
-
-        // Create a Blob with the JSON string of answers
-        var blob = new Blob([JSON.stringify(postdata, null, 2)], { type: "text/plain;charset=utf-8" });
-        var link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "answers.txt";
-        link.click();
-    }
-
-    // Store user input in answersByObject and trigger file download when Enter is pressed
-    function handleKeyPress(event) {
-        if (event.key === "Enter") {
-            var userSequence = document.getElementById('sequenceInput').value;
-            answersByObject["sequenceInput"] = userSequence; // Store the input
-            setTimeout(() => {
-                window.location.href = 'page5.html'; // Redirect to page5 after cooldown
-                downloadAnswers(); // Trigger file download
-            }, 2000); // 5 seconds cooldown
-        }
-    }
-
-    // Generate session ID
-    function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < 50; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
-    }
-
-    // Start progress bar animation and redirect to page5.html after 30 seconds
-    function startTimer() {
-        const progress = document.getElementById('progress');
-        progress.style.width = '100%';
-        setTimeout(() => {
-            window.location.href = 'page5.html';
-        }, 30000);
-    }
-
-    window.onload = startTimer;
-
-    // Event listener for "Enter" key press
-    document.getElementById('sequenceInput').addEventListener('keydown', handleKeyPress);
-
-</script> -->
