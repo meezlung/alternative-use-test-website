@@ -220,18 +220,18 @@
                 var circle = new ProgressBar.Circle('#progress', {
                     strokeWidth: 3,
                     color: '#F2DE00',
-                    duration: 5000,
+                    duration: 120000,
                     easing: 'linear',
                     trailWidth: 1,
                 });
                 circle.animate(1);
             }
     
-            setTimeout(nextImage, 5000);
+            setTimeout(nextImage, 120000);
         }
         
         function startImageCycle() {
-            setTimeout(nextImage, 5000);
+            setTimeout(nextImage, 120000);
         }
         
         document.addEventListener("DOMContentLoaded", function() {
@@ -266,7 +266,7 @@
     var circle = new ProgressBar.Circle('#progress', {
 	    strokeWidth: 3,
         color: '#F2DE00',
-        duration: 5000,
+        duration: 120000,
         easing: 'linear',
         trailWidth: 1,
     });
