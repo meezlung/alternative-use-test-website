@@ -7,13 +7,14 @@
 <script src="jquery-3.3.1.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:700" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="compiled.css">
 
 <script>
     var answersByObject = {
-        "object1": [],
-        "object2": [],
-        "object3": []
+        "BRICK": [],
+        "HANGER": [],
+        "NEWSPAPER": []
     };
     var objectname = "";
 
@@ -48,7 +49,6 @@
         }
     }
 
-
     function display_array() {
         var e = "";  // Start with an empty string
         var totalAnswers = 0;
@@ -68,11 +68,9 @@
         document.getElementById("result").innerHTML = e;
         document.getElementById("number").innerHTML = totalcount;
         document.getElementById("instructions").innerHTML = `
-            <h2>THANK YOU FOR ANSWERING!</h2>
-            <h4>WAIT FOR 15 SECONDS TO PROCEED TO THE NEXT PAGE</h4>
+            <h2>You will be redirected to the number task in 15 seconds.</h2>
 
         `;
-
 
         // <div class='judgediv'>
         //         <h3 style='text-decoration:underline;'>How to judge your answers</h3>
@@ -98,68 +96,63 @@
         setTimeout(() => {
             window.location.href = 'page4.html';
         }, 15000);
-
     }
 
 </script>
+    <style>
+        .progress-bar-page-two {
+            width: 50%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px auto 0 auto;
+        }
+        .progress-page-two {
+            height: 20px;
+            background-color: #F2DE00;
+            width: 0;
+            transition: width 15s linear;
+        }
 
-<style>
+        html {
+            max-width: 850px;
+        }
 
-    .progress-bar-page-two {
-        width: 50%;
-        background-color: #f3f3f3;
-        border-radius: 5px;
-        overflow: hidden;
-        margin: 20px auto 0 auto;
-    }
-    .progress-page-two {
-        height: 20px;
-        background-color: #F2DE00;
-        width: 0;
-        transition: width 15s linear;
-    }
+        .restart {
+            position: absolute;
+            top:10px;
+            right:5%;
+        }
 
-    html {
-        max-width: 850px;
-    }
+        .home {
+            position: absolute;
+            top:10px;
+            left:5%;
+        }
 
-    .restart {
-        position: absolute;
-        top:10px;
-        right:5%;
-    }
+        .button {
+            backface-visibility: hidden;
+            cursor: pointer;
+            display: inline-block;
+            white-space: nowrap;
+            background: #ffffff;
+            border-radius: 100px;
+            border: 3px solid #F2DE00;
+            padding: 5px 10px 5px 10px;
+            color: #333;
+            font-size: 10px;
+            font-weight: 500;
+            font-style: normal;
+        }
 
-    .home {
-        position: absolute;
-        top:10px;
-        left:5%;
-    }
-
-    .button {
-        backface-visibility: hidden;
-        cursor: pointer;
-        display: inline-block;
-        white-space: nowrap;
-        background: #ffffff;
-        border-radius: 100px;
-        border: 3px solid #F2DE00;
-        padding: 5px 10px 5px 10px;
-        color: #333;
-        font-size: 10px;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .button:hover {
-        background: #F2DE00;
-    }
-</style>
-
+        .button:hover {
+            background: #F2DE00;
+        }
+    </style>
 </head>
 
 <body>
-<!-- 	<input type="button" value="Refresh Page" class="restart button" onClick="window.location.reload()"> -->
-    <div class="restart-button" onClick="window.location.href='page3_main_test.html'">Start again</div>
+    <div class="restart-button" onClick="window.location.href='page3_1or2.html'">Start again</div>
 	<a href="page1.html"><div class="home-button">Back to intro</div></a>
 	<div class="circleholder">
 	<div class="progress" id="progress"></div>
@@ -167,25 +160,22 @@
 	<div class="innercircle" id="imageContainer"></div>
 	</div>
 
-    <br /><br />
-
     <div class="inputholder">
 		<input type="text" class="css-input" placeholder="Type an alternative use" id="text1" autofocus style="color: black;">
-		<p class="smalltext">hit return after each idea</p>
+        <p class="smalltext">Input your first response in English, your next response in Filipino.<br>Proceed alternating between languages throughout the task.</p> 
+   
     </div>
 
-    <br /><br />
+    <!-- Debug buttons -->
     <button id="button1" value="Add" onclick="add_element_to_array();" style="visibility: hidden;">Add</button>
-
     <button id="nextButton" onclick="nextImage() " style="visibility: hidden;">Next</button>
 
     <script>
-        var random_images_array = [["object1", "prompt1.jpg"], ["object2", "prompt2.jpg"], ["object3", "prompt3.jpg"]];
+        var random_images_array = [["BRICK", "BRICK"], ["HANGER", "HANGER"], ["NEWSPAPER", "NEWSPAPER"]];
         var currentIndex = 0;
-        var displayedImages = []; // Track which images have been displayed
+        var displayedImages = [];
         var objectname = "";
         
-        // Function to shuffle the array (Fisher-Yates Shuffle)
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -194,78 +184,60 @@
             return array;
         }
         
-        // Shuffle the image array once at the start
         random_images_array = shuffle(random_images_array);
         
-        // Show the first image
         function showFirstImage() {
-            var img = random_images_array[0][1]; // Get the first image
-            objectname = random_images_array[0][0]; // Set the object name
+            var text = random_images_array[0][1];
+            objectname = random_images_array[0][0];
         
-            var imgStr = '<img src="' + img + '" alt="" style="width: 200px; height: 200px;">';
-            document.getElementById("imageContainer").innerHTML = imgStr;
+            var textStr = '<div style="font-size: 33px; font-weight: 1000; position: absolute; top: 90%; left: 65%; transform: translate(-50%, -50%);">' + text + '</div>';
+            document.getElementById("imageContainer").innerHTML = textStr;
         
-            displayedImages.push(img); // Add the first image to the displayed list
+            displayedImages.push(text);
         
-            // Start the cycle for next images
             startImageCycle();
         }
         
         function nextImage() {
-            // Move to the next image index
             currentIndex = (currentIndex + 1) % random_images_array.length;
         
-            // Check if all images have been displayed
             if (displayedImages.length >= random_images_array.length) {
-                display_array();  // Once all images have been displayed
-                document.getElementById("imageContainer").innerHTML = "";  // Clear the image container
-                document.getElementById('progress').innerHTML = '';  // Clear the progress bar
+                display_array();
+                document.getElementById("imageContainer").innerHTML = "";
+                document.getElementById('progress').innerHTML = '';
                 return;
             }
         
-            var img = random_images_array[currentIndex][1];
+            var text = random_images_array[currentIndex][1];
             objectname = random_images_array[currentIndex][0];
         
-            // Ensure the image hasn't been displayed before
-            if (!displayedImages.includes(img)) {
-                var imgStr = '<img src="' + img + '" alt="" style="width: 200px; height: 200px;">';
-                document.getElementById("imageContainer").innerHTML = imgStr;
-                displayedImages.push(img); // Add this image to the displayed list
+            if (!displayedImages.includes(text)) {
+                var textStr = '<div style="font-size: 33px; font-weight: bold; position: absolute; top: 90%; left: 65%; transform: translate(-50%, -50%);">' + text + '</div>';
+                document.getElementById("imageContainer").innerHTML = textStr;
+                displayedImages.push(text);
         
-                // Reset the progress bar
-                document.getElementById('progress').innerHTML = ''; // Clear existing progress bar
+                document.getElementById('progress').innerHTML = '';
                 var circle = new ProgressBar.Circle('#progress', {
                     strokeWidth: 3,
                     color: '#F2DE00',
-                    duration: 20000,
+                    duration: 5000,
                     easing: 'linear',
                     trailWidth: 1,
                 });
                 circle.animate(1);
             }
     
-            // Schedule the next image transition after 20 seconds
-            setTimeout(nextImage, 20000);
+            setTimeout(nextImage, 5000);
         }
         
         function startImageCycle() {
-            // Start the initial timer for the first image after 20 seconds
-            setTimeout(nextImage, 20000);
+            setTimeout(nextImage, 5000);
         }
         
-        // Ensure DOM is fully loaded before running showFirstImage
         document.addEventListener("DOMContentLoaded", function() {
-            showFirstImage();  // This will run immediately after the DOM is fully loaded
+            showFirstImage();
         });
-        
-    </script>
-    
-    
 
-<!-- 	<input type="text" id="text1"></input> -->
-<!-- 	<button id="button1" value="Add" onclick="add_element_to_array();" style="visibility: hidden;">Add</button> -->
-	
-	<script>
 		var input = document.getElementById("text1");
 		input.addEventListener("keyup", function(event) {
 		event.preventDefault();
@@ -275,11 +247,6 @@
 		});
 	</script>
 
-<!--
-<script>
-	setTimeout(display_array(),5000);
-</script>
--->
 
     <input type="button" id="button2" value="Display" onclick="display_array();" style="visibility: hidden;"></input>
 	
@@ -292,12 +259,14 @@
     </div>
 	<h1 id="txtbox" style="font-weight:100;width:600px;font-size: 40px;color: #000000;"></h1>
 	</div>
+
+    
 <script>
 	window.onload = function onLoad() {
     var circle = new ProgressBar.Circle('#progress', {
 	    strokeWidth: 3,
         color: '#F2DE00',
-        duration: 20000,
+        duration: 5000,
         easing: 'linear',
         trailWidth: 1,
     });
