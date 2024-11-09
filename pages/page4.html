@@ -85,10 +85,13 @@
             if (event.key === "Enter") {
                 var userSequence = document.getElementById('sequenceInput').value;
                 answersByObject["sequenceInput"] = userSequence; // Store the input
+                localStorage.setItem("answersByObject", JSON.stringify(answersByObject));
+
+                // Redirect to page5 after an additional delay
                 setTimeout(() => {
-                    window.location.href = 'page5.html'; // Redirect to page5 after cooldown
-                    downloadAnswers(); // Trigger file download
-                }, 500); // 5 seconds cooldown
+                    downloadAnswers();
+                    window.location.href = 'page5.html';
+                }, 1500); // Wait 1 second after download
             }
         }
 
@@ -97,7 +100,7 @@
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-            for (var i = 0; i < 6; i++)
+            for (var i = 0; i < 7; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
             return text;
